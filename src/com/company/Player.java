@@ -9,6 +9,7 @@ public class Player {
         this.points = points;
     }
 
+
     public String getName() {
         return name;
     }
@@ -18,10 +19,11 @@ public class Player {
     }
 
     public int getPoints() {
+        System.out.println(getName() + " has " + points + " points");
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
+    public void setPoints() {
+        this.points += 1;
     }
 }

@@ -6,7 +6,6 @@ public class Main {
 
         Game game = new Game(1, "Easy");
 
-        game.test();
         game.getNumberPlayers();
 
         Player annie = new Player("Annie", 0);
@@ -17,6 +16,6 @@ public class Main {
 
         game.splitWord("hello");
 
-        game.checkWord("hello", "hello");
+        game.checkWord("hello", "hello", annie);
     }
 }

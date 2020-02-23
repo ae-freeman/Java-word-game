@@ -33,6 +33,7 @@ public class Game {
         return numberPlayers;
     }
 
+    // Prepare jumbled word for player
     public String[] splitWord(String word) {
        String[] splitWord = word.split("");
         List<String> arrayWord = new ArrayList<>();
@@ -47,9 +48,12 @@ public class Game {
 
     }
 
-    public boolean checkWord(String word, String originalWord){
+    // Check if answer is correct
+    public boolean checkWord(String word, String originalWord, Player player){
         if(word == originalWord){
             System.out.println("Correct word!");
+            player.setPoints();
+            player.getPoints();
             return true;
         } else {
             System.out.println("Incorrect word!");
@@ -77,7 +81,5 @@ public class Game {
         this.players = players;
     }
 
-    public static void test(){
-        System.out.println("Working");
-    }
+
 }
