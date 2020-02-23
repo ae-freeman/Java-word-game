@@ -14,5 +14,7 @@ public class Main {
         game.addPlayer(annie);
         game.getPlayers();
         game.addPlayer(annie);
+
+        game.splitWord("hello");
     }
 }

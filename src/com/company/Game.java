@@ -1,18 +1,19 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game {
     private int numberPlayers;
     private String difficulty;
     private ArrayList<Player> players = new ArrayList<>(); //Generics -> can only add object of type player to the game
-    private String gameType;
 
-    public Game(int numberPlayers, String difficulty, String gameType) {
+
+    public Game(int numberPlayers, String difficulty) {
         this.numberPlayers = numberPlayers;
         this.difficulty = difficulty;
         this.players = new ArrayList<Player>();
-        this.gameType = gameType;
+
     }
 
     // Add players to the players array list
@@ -33,8 +34,10 @@ public class Game {
         return numberPlayers;
     }
 
-    public String[] returnGameWord(String word) {
-        splitWord
+    public String[] splitWord(String word) {
+       String[] splitWord = word.split("");
+        System.out.println(Arrays.toString(splitWord));
+        return  splitWord;
     }
 
     public void setNumberPlayers(int numberPlayers) {
