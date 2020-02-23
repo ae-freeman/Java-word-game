@@ -8,5 +8,11 @@ public class Main {
 
         game.test();
         game.getNumberPlayers();
+
+        Player annie = new Player("Annie", 0);
+
+        game.addPlayer(annie);
+        game.getPlayers();
+        game.addPlayer(annie);
     }
 }
