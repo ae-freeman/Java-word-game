@@ -16,5 +16,7 @@ public class Main {
         game.addPlayer(annie);
 
         game.splitWord("hello");
+
+        game.checkWord("hello", "hello");
     }
 }

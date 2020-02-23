@@ -1,7 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Game {
     private int numberPlayers;
@@ -36,8 +35,26 @@ public class Game {
 
     public String[] splitWord(String word) {
        String[] splitWord = word.split("");
-        System.out.println(Arrays.toString(splitWord));
+        List<String> arrayWord = new ArrayList<>();
+        arrayWord = Arrays.asList(splitWord);
+        Collections.shuffle(arrayWord);
+
+        for(String s: arrayWord){
+            System.out.print(s);
+        }
+        System.out.println("");
         return  splitWord;
+
+    }
+
+    public boolean checkWord(String word, String originalWord){
+        if(word == originalWord){
+            System.out.println("Correct word!");
+            return true;
+        } else {
+            System.out.println("Incorrect word!");
+            return false;
+        }
     }
 
     public void setNumberPlayers(int numberPlayers) {
