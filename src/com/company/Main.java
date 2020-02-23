@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Game game = new Game(1, "Easy");
+
         play();
 
 //        game.getNumberPlayers();
@@ -35,6 +35,24 @@ public class Main {
             switch(action){
                 case 0:
                     System.out.println("Welcome to the word guessing game!");
+                    System.out.println("How many people are playing?");
+                    int numberPlayers = scanner.nextInt();
+                    // TODO: change difficulty to numbers
+                    System.out.println("Easy, medium or hard?");
+                    String difficulty = scanner.next();
+                    System.out.println(difficulty);
+                    // Create new game
+                    Game game = new Game(numberPlayers, difficulty);
+                    // Up to the number of players, get names, create new players and add to array list
+                    for(int i = 0; i < numberPlayers; i++){
+                        System.out.println("Player " + (i + 1) + " name:");
+                        String name = scanner.next();
+                        Player player = new Player(name, 0);
+                        game.addPlayer(player);
+                        //TODO: allow for addPlayer error, and ask for name again
+
+                    }
+                    game.getPlayers();
                     break;
                 case 1:
                     System.out.println("Previous scores");

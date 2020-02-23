@@ -19,6 +19,7 @@ public class Game {
 
     public boolean addPlayer(Player player){
         if (players.contains(player)) {
+            //TODO: at the moment this is only true if same item in memory, implement an equalsTo override method?
             System.out.println(player.getName() + " is already playing in this game");
             return false;
         } else {
@@ -44,7 +45,7 @@ public class Game {
             System.out.print(s);
         }
         System.out.println("");
-        return  splitWord;
+        return splitWord;
 
     }
 
@@ -74,6 +75,10 @@ public class Game {
     }
 
     public ArrayList<Player> getPlayers() {
+        for(Player player: players){
+            System.out.print(player.getName());
+            System.out.println("");
+        }
         return players;
     }
 
