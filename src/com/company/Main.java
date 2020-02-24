@@ -52,7 +52,20 @@ public class Main {
                         //TODO: allow for addPlayer error, and ask for name again
 
                     }
+                    System.out.println("Game players:");
                     game.getPlayers();
+                    //TODO: Loop through each player and play the game
+                    for (int i = 0; i < numberPlayers; i++){
+                        System.out.println("Rearrange the letters  of the scrambled word!");
+                        System.out.println("It is " + game.players.get(i).getName() + "'s turn");
+                        game.splitWord("hello");
+                        System.out.println("Answer:");
+                        String playerAnswer = scanner.next();
+                        game.checkWord(playerAnswer, "hello", game.players.get(i));
+                    }
+
+                    // TODO: end of game, save scores to a scores class that can be called in previous scores method below
+
                     break;
                 case 1:
                     System.out.println("Previous scores");

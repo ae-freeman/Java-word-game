@@ -5,7 +5,7 @@ import java.util.*;
 public class Game {
     private int numberPlayers;
     private String difficulty;
-    private ArrayList<Player> players = new ArrayList<>(); //Generics -> can only add object of type player to the game
+    public ArrayList<Player> players = new ArrayList<>(); //Generics -> can only add object of type player to the game
 
 
     public Game(int numberPlayers, String difficulty) {
@@ -51,7 +51,7 @@ public class Game {
 
     // Check if answer is correct
     public boolean checkWord(String word, String originalWord, Player player){
-        if(word == originalWord){
+        if(word.equals(originalWord)){
             System.out.println("Correct word!");
             player.setPoints();
             player.getPoints();

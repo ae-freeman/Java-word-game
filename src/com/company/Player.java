@@ -19,6 +19,7 @@ public class Player {
     }
 
     public int getPoints() {
+        //TODO: if points == 1, then have the text without the plural
         System.out.println(getName() + " has " + points + " points");
         return points;
     }
