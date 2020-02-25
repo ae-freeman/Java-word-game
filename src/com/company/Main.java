@@ -16,11 +16,11 @@ public class Main {
         }
         //TODO: have three different files for easy, medium and hard
 
-        play(dictionary);
+        play();
 
     }
 
-    private static void play(HashSet<String> dictionary){
+    private static void play(){
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
 
@@ -34,21 +34,48 @@ public class Main {
                 case 0:
 
                     System.out.println("Welcome to the word guessing game!");
+
+                    // Get number of players
                     System.out.println("How many people are playing?");
                     int numberPlayers = scanner.nextInt();
-                    // TODO: change difficulty to numbers
-                    System.out.println("Easy, medium or hard?");
-                    String difficulty = scanner.next();
-                    System.out.println(difficulty);
-                    // Create new game
+
+                    // Get difficulty
+                    System.out.println("Choose difficulty:\n 1 - Easy\n 2 - Medium\n 3 - Hard");
+                    int difficulty = scanner.nextInt();
+
+
+                    // Load word file corresponding to selected difficulty
+                    HashSet<String> dictionary = new HashSet<String>();
+                    try{
+                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
+                        while (fileScan.hasNextLine()) {
+                            dictionary.add(fileScan.nextLine().toLowerCase());
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error loading file");
+                    }
+
+
+
+                    // Create new game with chosen player number and difficulty level
                     Game game = new Game(numberPlayers, difficulty);
+
+
                     // Up to the number of players, get names, create new players and add to array list
                     for(int i = 0; i < numberPlayers; i++){
-                        System.out.println("Player " + (i + 1) + " name:");
-                        String name = scanner.next();
-                        Player player = new Player(name, 0);
-                        game.addPlayer(player);
+                        while(true) {
+                            System.out.println("Player " + (i + 1) + " name:");
+                            String name = scanner.next();
+                            Player player = new Player(name, 0);
+                            if (game.addPlayer(player)) {
+                                break;
+
+                            }
+
+                        }
+
                         //TODO: allow for addPlayer error, and ask for name again
+
                         //try-catch block -> scanner.nextLine();
                         // print out what they need to do
 

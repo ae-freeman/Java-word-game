@@ -6,11 +6,11 @@ import java.util.*;
 
 public class Game {
     private int numberPlayers;
-    private String difficulty;
+    private int difficulty;
     public ArrayList<Player> players = new ArrayList<>(); //Generics -> can only add object of type player to the game
 
 
-    public Game(int numberPlayers, String difficulty) {
+    public Game(int numberPlayers, int difficulty) {
         this.numberPlayers = numberPlayers;
         this.difficulty = difficulty;
         this.players = new ArrayList<Player>();
@@ -20,15 +20,19 @@ public class Game {
     // Add players to the players array list
 
     public boolean addPlayer(Player player){
-        if (players.contains(player)) {
-            //TODO: at the moment this is only true if same item in memory, implement an equalsTo override method?
-            System.out.println(player.getName() + " is already playing in this game");
-            return false;
-        } else {
+        String name = player.getName();
+        for(Player currentPlayer: players){
+            if(name.equals(currentPlayer.getName())){
+                System.out.println(player.getName() + " is already playing in this game");
+                return false;
+            }
+
+        }
+
             players.add(player);
             System.out.println(player.getName() + " is playing!");
             return true;
-        }
+
     }
 
     public int getNumberPlayers() {
@@ -71,11 +75,11 @@ public class Game {
         this.numberPlayers = numberPlayers;
     }
 
-    public String getDifficulty() {
+    public int getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 
