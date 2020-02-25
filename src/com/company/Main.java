@@ -1,25 +1,26 @@
 package com.company;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
-        play();
+        HashSet<String> dictionary = new HashSet<String>();
+        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
+        while (fileScan.hasNextLine()) {
+            dictionary.add(fileScan.nextLine().toLowerCase());
+        }
+        System.out.println(dictionary);
 
-//        game.getNumberPlayers();
-//
-//        Player annie = new Player("Annie", 0);
-//
-//        game.addPlayer(annie);
-//        game.getPlayers();
-//        game.addPlayer(annie);
-//
-//        game.splitWord("hello");
-//
-//        game.checkWord("hello", "hello", annie);
+
+//        play();
+
     }
 
     private static void play(){
@@ -50,13 +51,15 @@ public class Main {
                         Player player = new Player(name, 0);
                         game.addPlayer(player);
                         //TODO: allow for addPlayer error, and ask for name again
+                        //try-catch block -> scanner.nextLine();
+                        // print out what they need to do
 
                     }
                     System.out.println("Game players:");
                     game.getPlayers();
-                    //TODO: Loop through each player and play the game
                     for (int i = 0; i < numberPlayers; i++){
                         System.out.println("Rearrange the letters  of the scrambled word!");
+                        //TODO: Add breaks between each announcement, press something to go to next thing
                         System.out.println("It is " + game.players.get(i).getName() + "'s turn");
                         game.splitWord("hello");
                         System.out.println("Answer:");
