@@ -45,6 +45,7 @@ public class Game {
         arrayWord = Arrays.asList(splitWord);
         Collections.shuffle(arrayWord);
 
+        // TODO: print in a 2d array so it is harder to figure it out
         for(String s: arrayWord){
             System.out.print(s);
         }

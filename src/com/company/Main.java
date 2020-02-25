@@ -14,12 +14,9 @@ public class Main {
         while (fileScan.hasNextLine()) {
             dictionary.add(fileScan.nextLine().toLowerCase());
         }
-        System.out.println(dictionary);
+        //TODO: have three different files for easy, medium and hard
 
-        Object word = getGameWord(dictionary);
-        System.out.println(word.toString());
-
-//        play(dictionary);
+        play(dictionary);
 
     }
 
@@ -63,10 +60,10 @@ public class Main {
                         //TODO: Add breaks between each announcement, press something to go to next thing
                         System.out.println("It is " + game.players.get(i).getName() + "'s turn");
                         Object gameWord = getGameWord(dictionary);
-                        game.splitWord("hello");
+                        game.splitWord(gameWord.toString());
                         System.out.println("Answer:");
                         String playerAnswer = scanner.next();
-                        game.checkWord(playerAnswer, "hello", game.players.get(i));
+                        game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i));
                     }
 
                     // TODO: end of game, save scores to a scores class that can be called in previous scores method below
