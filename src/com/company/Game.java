@@ -1,5 +1,7 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Game {
@@ -33,6 +35,8 @@ public class Game {
         System.out.println("Number of players: " + numberPlayers);
         return numberPlayers;
     }
+
+
 
     // Prepare jumbled word for player
     public String[] splitWord(String word) {

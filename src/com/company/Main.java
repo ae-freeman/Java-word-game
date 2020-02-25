@@ -2,15 +2,13 @@ package com.company;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-
+        // Load words into hashSet for faster look up times
         HashSet<String> dictionary = new HashSet<String>();
         Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
         while (fileScan.hasNextLine()) {
@@ -18,12 +16,14 @@ public class Main {
         }
         System.out.println(dictionary);
 
+        Object word = getGameWord(dictionary);
+        System.out.println(word.toString());
 
-//        play();
+//        play(dictionary);
 
     }
 
-    private static void play(){
+    private static void play(HashSet<String> dictionary){
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
 
@@ -35,6 +35,7 @@ public class Main {
 
             switch(action){
                 case 0:
+
                     System.out.println("Welcome to the word guessing game!");
                     System.out.println("How many people are playing?");
                     int numberPlayers = scanner.nextInt();
@@ -61,6 +62,7 @@ public class Main {
                         System.out.println("Rearrange the letters  of the scrambled word!");
                         //TODO: Add breaks between each announcement, press something to go to next thing
                         System.out.println("It is " + game.players.get(i).getName() + "'s turn");
+                        Object gameWord = getGameWord(dictionary);
                         game.splitWord("hello");
                         System.out.println("Answer:");
                         String playerAnswer = scanner.next();
@@ -92,4 +94,34 @@ public class Main {
                 "2 - print menu\n" +
                 "3 - to quit\n");
     }
+
+    public static Object getGameWord(HashSet<String> dictionary){
+        Random random = new Random();
+
+        // Generate a random number between 0 and dictionary size - 1
+        int randomNumber = random.nextInt(dictionary.size());
+
+        //get an iterator
+        Iterator iterator = dictionary.iterator();
+
+        int currentIndex = 0;
+        Object randomElement = null;
+
+        //iterate the HashSet
+        while(iterator.hasNext()){
+
+            randomElement = iterator.next();
+
+            //if current index is equal to random number
+            if(currentIndex == randomNumber)
+                return randomElement;
+
+            //increase the current index
+            currentIndex++;
+        }
+
+        return randomElement;
+    }
 }
+
+
