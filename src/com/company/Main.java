@@ -24,6 +24,8 @@ public class Main {
         boolean quit = false;
 
         printMenu();
+        //Initialise new scores class
+        Scores scores = new Scores();
 
         while(!quit){
             int action = scanner.nextInt();
@@ -31,6 +33,7 @@ public class Main {
 
             switch(action){
                 case 0:
+
 
                     System.out.println("Welcome to the word guessing game!");
 
@@ -46,7 +49,8 @@ public class Main {
                     // Load word file corresponding to selected difficulty
                     HashSet<String> dictionary = new HashSet<String>();
                     try{
-                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
+//                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
+                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
                         while (fileScan.hasNextLine()) {
                             dictionary.add(fileScan.nextLine().toLowerCase());
                         }
@@ -103,6 +107,9 @@ public class Main {
 
                         game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i), difficulty);
 
+                        //Add player score to scores class
+                        scores.addScore(game.players.get(i).getName(), game.players.get(i).getPoints());
+
                     }
                     System.out.println("Press 2 to return to game menu");
                     // TODO: end of game, save scores to a scores class that can be called in previous scores method below
@@ -110,6 +117,7 @@ public class Main {
                     break;
                 case 1:
                     System.out.println("Previous scores");
+                    System.out.println(scores.getScores());
                     break;
                 case 2:
                     printMenu();

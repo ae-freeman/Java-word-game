@@ -17,6 +17,8 @@ public class Game {
 
     }
 
+
+
     // Add players to the players array list
 
     public boolean addPlayer(Player player){
@@ -73,7 +75,6 @@ public class Game {
         if(word.equals(originalWord)){
             System.out.println("Correct word!");
             player.setPoints(difficulty);
-            player.getPoints();
             return true;
         } else {
             System.out.println("Incorrect word!");
