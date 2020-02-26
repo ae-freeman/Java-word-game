@@ -14,7 +14,6 @@ public class Main {
 //        while (fileScan.hasNextLine()) {
 //            dictionary.add(fileScan.nextLine().toLowerCase());
 //        }
-//        //TODO: have three different files for easy, medium and hard
 
         play();
 
@@ -55,8 +54,6 @@ public class Main {
                         System.out.println("Error loading file");
                     }
 
-
-
                     // Create new game with chosen player number and difficulty level
                     Game game = new Game(numberPlayers, difficulty);
 
@@ -82,13 +79,32 @@ public class Main {
                         System.out.println("Rearrange the letters  of the scrambled word!");
                         //TODO: Add breaks between each announcement, press something to go to next thing
                         System.out.println("It is " + game.players.get(i).getName() + "'s turn");
-                        Object gameWord = getGameWord(dictionary);
-                        game.splitWord(gameWord.toString());
-                        System.out.println("Answer:");
-                        String playerAnswer = scanner.next();
-                        game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i), difficulty);
-                    }
 
+                        // Initialise variables
+                        Object gameWord = null;
+                        String playerAnswer = "";
+                        int newWordCounter = 0;
+
+                        while(newWordCounter < 3){
+                            gameWord = game.getGameWord(dictionary);
+                            game.splitWord(gameWord.toString());
+                            if(newWordCounter == 1){
+                                System.out.println("Type your answer or press n for new word (you have " + (2 - newWordCounter) + " new word left)");
+                            } else {
+                                System.out.println("Type your answer or press n for new word (you have " + (2 - newWordCounter) + " new words left)");
+                            }
+
+                            playerAnswer = scanner.next();
+                            if(!playerAnswer.toLowerCase().equals("n")){
+                                break;
+                            }
+                            newWordCounter++;
+                        }
+
+                        game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i), difficulty);
+
+                    }
+                    System.out.println("Press 2 to return to game menu");
                     // TODO: end of game, save scores to a scores class that can be called in previous scores method below
 
                     break;
@@ -115,33 +131,7 @@ public class Main {
                 "3 - to quit\n");
     }
 
-    public static Object getGameWord(HashSet<String> dictionary){
-        Random random = new Random();
 
-        // Generate a random number between 0 and dictionary size - 1
-        int randomNumber = random.nextInt(dictionary.size());
-
-        //get an iterator
-        Iterator iterator = dictionary.iterator();
-
-        int currentIndex = 0;
-        Object randomElement = null;
-
-        //iterate the HashSet
-        while(iterator.hasNext()){
-
-            randomElement = iterator.next();
-
-            //if current index is equal to random number
-            if(currentIndex == randomNumber)
-                return randomElement;
-
-            //increase the current index
-            currentIndex++;
-        }
-
-        return randomElement;
-    }
 }
 
 

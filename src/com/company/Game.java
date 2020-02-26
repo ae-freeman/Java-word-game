@@ -77,6 +77,7 @@ public class Game {
             return true;
         } else {
             System.out.println("Incorrect word!");
+            System.out.println("The correct answer was " + originalWord);
             return false;
         }
     }
@@ -103,6 +104,34 @@ public class Game {
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
+    }
+
+    public static Object getGameWord(HashSet<String> dictionary){
+        Random random = new Random();
+
+        // Generate a random number between 0 and dictionary size - 1
+        int randomNumber = random.nextInt(dictionary.size());
+
+        //get an iterator
+        Iterator iterator = dictionary.iterator();
+
+        int currentIndex = 0;
+        Object randomElement = null;
+
+        //iterate the HashSet
+        while(iterator.hasNext()){
+
+            randomElement = iterator.next();
+
+            //if current index is equal to random number
+            if(currentIndex == randomNumber)
+                return randomElement;
+
+            //increase the current index
+            currentIndex++;
+        }
+
+        return randomElement;
     }
 
 
