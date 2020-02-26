@@ -74,12 +74,8 @@ public class Main {
 
                         }
 
-                        //TODO: allow for addPlayer error, and ask for name again
-
-                        //try-catch block -> scanner.nextLine();
-                        // print out what they need to do
-
                     }
+
                     System.out.println("Game players:");
                     game.getPlayers();
                     for (int i = 0; i < numberPlayers; i++){

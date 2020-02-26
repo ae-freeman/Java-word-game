@@ -49,10 +49,20 @@ public class Game {
         arrayWord = Arrays.asList(splitWord);
         Collections.shuffle(arrayWord);
 
-        // TODO: print in a 2d array so it is harder to figure it out
+
+
+        // Print arrayList in a grid so it is harder to figure out
+        int charCounter = 0;
         for(String s: arrayWord){
+            if(charCounter % 3 == 0){
+                System.out.println("");
+            }
             System.out.print(s);
+            charCounter++;
+
         }
+
+
         System.out.println("");
         return splitWord;
 
