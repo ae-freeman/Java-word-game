@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a12d75a-ad85-45e5-947d-0eb1c7ed0afa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WordGame/com/company/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WordGame/com/company/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WordGame/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WordGame/com/company/Main.class" afterDir="false" />

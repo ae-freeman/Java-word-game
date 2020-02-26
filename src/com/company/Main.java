@@ -8,13 +8,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        // Load words into hashSet for faster look up times
-        HashSet<String> dictionary = new HashSet<String>();
-        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
-        while (fileScan.hasNextLine()) {
-            dictionary.add(fileScan.nextLine().toLowerCase());
-        }
-        //TODO: have three different files for easy, medium and hard
+//        // Load words into hashSet for faster look up times
+//        HashSet<String> dictionary = new HashSet<String>();
+//        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
+//        while (fileScan.hasNextLine()) {
+//            dictionary.add(fileScan.nextLine().toLowerCase());
+//        }
+//        //TODO: have three different files for easy, medium and hard
 
         play();
 
@@ -47,7 +47,7 @@ public class Main {
                     // Load word file corresponding to selected difficulty
                     HashSet<String> dictionary = new HashSet<String>();
                     try{
-                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
+                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
                         while (fileScan.hasNextLine()) {
                             dictionary.add(fileScan.nextLine().toLowerCase());
                         }
@@ -86,7 +86,7 @@ public class Main {
                         game.splitWord(gameWord.toString());
                         System.out.println("Answer:");
                         String playerAnswer = scanner.next();
-                        game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i));
+                        game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i), difficulty);
                     }
 
                     // TODO: end of game, save scores to a scores class that can be called in previous scores method below

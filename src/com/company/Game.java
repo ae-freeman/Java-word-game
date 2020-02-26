@@ -69,10 +69,10 @@ public class Game {
     }
 
     // Check if answer is correct
-    public boolean checkWord(String word, String originalWord, Player player){
+    public boolean checkWord(String word, String originalWord, Player player, int difficulty){
         if(word.equals(originalWord)){
             System.out.println("Correct word!");
-            player.setPoints();
+            player.setPoints(difficulty);
             player.getPoints();
             return true;
         } else {

@@ -27,7 +27,14 @@ public class Player {
         return points;
     }
 
-    public void setPoints() {
-        this.points += 1;
+    public void setPoints(int difficulty) {
+        if(difficulty == 1){
+            this.points++;
+        } else if(difficulty == 2){
+            this.points += 2;
+        } else {
+            this.points += 3;
+        }
+
     }
 }
