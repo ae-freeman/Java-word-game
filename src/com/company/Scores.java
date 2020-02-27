@@ -10,12 +10,14 @@ public class Scores{
         this.scores = new HashMap();
     }
 
+    //TODO: Currently adding a new player -> if name already exists, get that name and add to it.
+
     public void addScore(String name, int points){
         scores.put(name, points);
     }
 
     public Map getScores() {
-        //TODO: sort in descending order
+        //TODO: sort in descending order -> use a treeMap
         return scores;
     }
 

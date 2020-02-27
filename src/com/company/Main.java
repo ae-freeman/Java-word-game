@@ -49,8 +49,8 @@ public class Main {
                     // Load word file corresponding to selected difficulty
                     HashSet<String> dictionary = new HashSet<String>();
                     try{
-//                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
-                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
+                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
+//                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
                         while (fileScan.hasNextLine()) {
                             dictionary.add(fileScan.nextLine().toLowerCase());
                         }
@@ -104,6 +104,7 @@ public class Main {
                             }
                             newWordCounter++;
                         }
+                        //TODO: give option of getting first letter
 
                         game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i), difficulty);
 

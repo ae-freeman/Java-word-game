@@ -72,6 +72,8 @@ public class Game {
 
     // Check if answer is correct
     public boolean checkWord(String word, String originalWord, Player player, int difficulty){
+        //TODO: Check by letter instead of whole word by using ascii sum
+
         if(word.equals(originalWord)){
             System.out.println("Correct word!");
             player.setPoints(difficulty);
