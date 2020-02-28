@@ -1,7 +1,5 @@
 package com.company;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Game {
@@ -18,22 +16,21 @@ public class Game {
     }
 
 
-
     // Add players to the players array list
 
-    public boolean addPlayer(Player player){
+    public boolean addPlayer(Player player) {
         String name = player.getName();
-        for(Player currentPlayer: players){
-            if(name.equals(currentPlayer.getName())){
+        for (Player currentPlayer : players) {
+            if (name.equals(currentPlayer.getName())) {
                 System.out.println(player.getName() + " is already playing in this game");
                 return false;
             }
 
         }
 
-            players.add(player);
-            System.out.println(player.getName() + " is playing!");
-            return true;
+        players.add(player);
+        System.out.println(player.getName() + " is playing!");
+        return true;
 
     }
 
@@ -43,20 +40,18 @@ public class Game {
     }
 
 
-
     // Prepare jumbled word for player
     public String[] splitWord(String word) {
-       String[] splitWord = word.split("");
+        String[] splitWord = word.split("");
         List<String> arrayWord = new ArrayList<>();
         arrayWord = Arrays.asList(splitWord);
         Collections.shuffle(arrayWord);
 
 
-
         // Print arrayList in a grid so it is harder to figure out
         int charCounter = 0;
-        for(String s: arrayWord){
-            if(charCounter % 3 == 0){
+        for (String s : arrayWord) {
+            if (charCounter % 3 == 0) {
                 System.out.println("");
             }
             System.out.print(s);
@@ -70,13 +65,30 @@ public class Game {
 
     }
 
-    // Check if answer is correct
-    public boolean checkWord(String word, String originalWord, Player player, int difficulty){
-        //TODO: Check by letter instead of whole word by using ascii sum
+    public void printFirstLetter(Object word) {
+        System.out.println("First letter: " + word.toString().charAt(0));
+    }
 
-        if(word.equals(originalWord)){
+    // Check if answer is correct
+    public boolean checkWord(String word, String originalWord, Player player, int difficulty, boolean hasUsedHint) {
+        //Check answer by comparing ascii sum of given word, to account for case where a different word can be
+        // made using the same letters as original word
+
+        int originalWordSum = 0;
+        for (int i = 0; i < originalWord.length(); i++) {
+            originalWordSum += originalWord.charAt(i);
+
+        }
+
+        int answerWordSum = 0;
+        for (int i = 0; i < word.length(); i++) {
+            answerWordSum += originalWord.charAt(i);
+
+        }
+
+        if (originalWordSum == answerWordSum) {
             System.out.println("Correct word!");
-            player.setPoints(difficulty);
+            player.setPoints(difficulty, hasUsedHint);
             return true;
         } else {
             System.out.println("Incorrect word!");
@@ -98,7 +110,7 @@ public class Game {
     }
 
     public ArrayList<Player> getPlayers() {
-        for(Player player: players){
+        for (Player player : players) {
             System.out.print(player.getName());
             System.out.println("");
         }
@@ -109,7 +121,7 @@ public class Game {
         this.players = players;
     }
 
-    public static Object getGameWord(HashSet<String> dictionary){
+    public static Object getGameWord(HashSet<String> dictionary) {
         Random random = new Random();
 
         // Generate a random number between 0 and dictionary size - 1
@@ -122,12 +134,12 @@ public class Game {
         Object randomElement = null;
 
         //iterate the HashSet
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
 
             randomElement = iterator.next();
 
             //if current index is equal to random number
-            if(currentIndex == randomNumber)
+            if (currentIndex == randomNumber)
                 return randomElement;
 
             //increase the current index

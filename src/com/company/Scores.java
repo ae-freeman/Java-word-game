@@ -12,7 +12,7 @@ public class Scores{
 
     //TODO: Currently adding a new player -> if name already exists, get that name and add to it.
 
-    public void addScore(String name, int points){
+    public void addScore(String name, double points){
         scores.put(name, points);
     }
 

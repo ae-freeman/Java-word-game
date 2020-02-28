@@ -19,7 +19,7 @@ public class Main {
 
     }
 
-    private static void play(){
+    private static void play() {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
 
@@ -27,11 +27,11 @@ public class Main {
         //Initialise new scores class
         Scores scores = new Scores();
 
-        while(!quit){
+        while (!quit) {
             int action = scanner.nextInt();
             scanner.nextLine();
 
-            switch(action){
+            switch (action) {
                 case 0:
 
 
@@ -39,18 +39,41 @@ public class Main {
 
                     // Get number of players
                     System.out.println("How many people are playing?");
-                    int numberPlayers = scanner.nextInt();
+                    int numberPlayers = 0;
+
+                    while (true) {
+                        try {
+                            numberPlayers = scanner.nextInt();
+                            break;
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Please enter an integer");
+                            scanner.next();
+
+                        }
+                    }
+
 
                     // Get difficulty
                     System.out.println("Choose difficulty:\n 1 - Easy\n 2 - Medium\n 3 - Hard");
-                    int difficulty = scanner.nextInt();
+                    int difficulty = 0;
+                    while (true) {
+                        try {
+                            difficulty = scanner.nextInt();
+                            break;
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Please choose 1, 2 or 3");
+                            scanner.next();
+                        }
+                    }
 
 
                     // Load word file corresponding to selected difficulty
                     HashSet<String> dictionary = new HashSet<String>();
-                    try{
-                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
-//                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
+                    try {
+//                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
+                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
                         while (fileScan.hasNextLine()) {
                             dictionary.add(fileScan.nextLine().toLowerCase());
                         }
@@ -63,8 +86,8 @@ public class Main {
 
 
                     // Up to the number of players, get names, create new players and add to array list
-                    for(int i = 0; i < numberPlayers; i++){
-                        while(true) {
+                    for (int i = 0; i < numberPlayers; i++) {
+                        while (true) {
                             System.out.println("Player " + (i + 1) + " name:");
                             String name = scanner.next();
                             Player player = new Player(name, 0);
@@ -79,7 +102,7 @@ public class Main {
 
                     System.out.println("Game players:");
                     game.getPlayers();
-                    for (int i = 0; i < numberPlayers; i++){
+                    for (int i = 0; i < numberPlayers; i++) {
                         System.out.println("Rearrange the letters  of the scrambled word!");
                         //TODO: Add breaks between each announcement, press something to go to next thing
                         System.out.println("It is " + game.players.get(i).getName() + "'s turn");
@@ -88,25 +111,35 @@ public class Main {
                         Object gameWord = null;
                         String playerAnswer = "";
                         int newWordCounter = 0;
+                        boolean hasUsedHint = false;
 
-                        while(newWordCounter < 3){
+                        while (newWordCounter < 3) {
                             gameWord = game.getGameWord(dictionary);
                             game.splitWord(gameWord.toString());
-                            if(newWordCounter == 1){
+                            if (newWordCounter == 1) {
                                 System.out.println("Type your answer or press n for new word (you have " + (2 - newWordCounter) + " new word left)");
                             } else {
                                 System.out.println("Type your answer or press n for new word (you have " + (2 - newWordCounter) + " new words left)");
                             }
+                            System.out.println("Press f to get first letter of word (-0.5 points)");
 
                             playerAnswer = scanner.next();
-                            if(!playerAnswer.toLowerCase().equals("n")){
+
+                            if (playerAnswer.toLowerCase().equals("f")) {
+                                game.printFirstLetter(gameWord);
+                                hasUsedHint = true;
+                                playerAnswer = scanner.next();
+                            }
+
+                            if (!playerAnswer.toLowerCase().equals("n")) {
+
                                 break;
                             }
                             newWordCounter++;
                         }
-                        //TODO: give option of getting first letter
 
-                        game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i), difficulty);
+
+                        game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i), difficulty, hasUsedHint);
 
                         //Add player score to scores class
                         scores.addScore(game.players.get(i).getName(), game.players.get(i).getPoints());
@@ -132,7 +165,7 @@ public class Main {
 
     }
 
-    private static void printMenu(){
+    private static void printMenu() {
         System.out.println("Hello! Do you want to play the game?");
         System.out.println("0 - to start new game\n" +
                 "1 - to see previous scores\n" +
