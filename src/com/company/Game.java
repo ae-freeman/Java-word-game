@@ -17,7 +17,6 @@ public class Game {
 
 
     // Add players to the players array list
-
     public boolean addPlayer(Player player) {
         String name = player.getName();
         for (Player currentPlayer : players) {
@@ -37,6 +36,35 @@ public class Game {
     public int getNumberPlayers() {
         System.out.println("Number of players: " + numberPlayers);
         return numberPlayers;
+    }
+
+    // Get the word the game
+    public static Object getGameWord(HashSet<String> dictionary) {
+        Random random = new Random();
+
+        // Generate a random number between 0 and dictionary size - 1
+        int randomNumber = random.nextInt(dictionary.size());
+
+        //get an iterator
+        Iterator iterator = dictionary.iterator();
+
+        int currentIndex = 0;
+        Object randomElement = null;
+
+        //iterate the HashSet
+        while (iterator.hasNext()) {
+
+            randomElement = iterator.next();
+
+            //if current index is equal to random number
+            if (currentIndex == randomNumber)
+                return randomElement;
+
+            //increase the current index
+            currentIndex++;
+        }
+
+        return randomElement;
     }
 
 
@@ -65,6 +93,7 @@ public class Game {
 
     }
 
+    // Give hint to player if they ask for it
     public void printFirstLetter(Object word) {
         System.out.println("First letter: " + word.toString().charAt(0));
     }
@@ -121,33 +150,6 @@ public class Game {
         this.players = players;
     }
 
-    public static Object getGameWord(HashSet<String> dictionary) {
-        Random random = new Random();
-
-        // Generate a random number between 0 and dictionary size - 1
-        int randomNumber = random.nextInt(dictionary.size());
-
-        //get an iterator
-        Iterator iterator = dictionary.iterator();
-
-        int currentIndex = 0;
-        Object randomElement = null;
-
-        //iterate the HashSet
-        while (iterator.hasNext()) {
-
-            randomElement = iterator.next();
-
-            //if current index is equal to random number
-            if (currentIndex == randomNumber)
-                return randomElement;
-
-            //increase the current index
-            currentIndex++;
-        }
-
-        return randomElement;
-    }
 
 
 }

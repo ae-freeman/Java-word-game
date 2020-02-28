@@ -23,9 +23,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
 
-        printMenu();
         //Initialise new scores class
         Scores scores = new Scores();
+
+        printMenu();
+
+
 
         while (!quit) {
             int action = scanner.nextInt();
@@ -70,7 +73,7 @@ public class Main {
 
 
                     // Load word file corresponding to selected difficulty
-                    HashSet<String> dictionary = new HashSet<String>();
+                    HashSet<String> dictionary = new HashSet<>();
                     try {
 //                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
                         Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
@@ -102,10 +105,15 @@ public class Main {
 
                     System.out.println("Game players:");
                     game.getPlayers();
+                    System.out.println("");
+
+                    //For each player in the game, guess the given word
                     for (int i = 0; i < numberPlayers; i++) {
                         System.out.println("Rearrange the letters  of the scrambled word!");
-                        //TODO: Add breaks between each announcement, press something to go to next thing
+                        System.out.println("");
+                        //TODO: Add breaks between each announcement, press enter to go to next thing
                         System.out.println("It is " + game.players.get(i).getName() + "'s turn");
+                        System.out.println("");
 
                         // Initialise variables
                         Object gameWord = null;
@@ -113,6 +121,7 @@ public class Main {
                         int newWordCounter = 0;
                         boolean hasUsedHint = false;
 
+                        // Get answer from player
                         while (newWordCounter < 3) {
                             gameWord = game.getGameWord(dictionary);
                             game.splitWord(gameWord.toString());
@@ -138,7 +147,7 @@ public class Main {
                             newWordCounter++;
                         }
 
-
+                        // Check if player answered correctly
                         game.checkWord(playerAnswer, gameWord.toString(), game.players.get(i), difficulty, hasUsedHint);
 
                         //Add player score to scores class
