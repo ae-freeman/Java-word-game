@@ -75,8 +75,8 @@ public class Main {
                     // Load word file corresponding to selected difficulty
                     HashSet<String> dictionary = new HashSet<>();
                     try {
-//                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
-                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
+                        Scanner fileScan = new Scanner(new File(difficulty + ".txt"));
+//                        Scanner fileScan = new Scanner(new File("small_dictionary.txt"));
                         while (fileScan.hasNextLine()) {
                             dictionary.add(fileScan.nextLine().toLowerCase());
                         }
@@ -105,7 +105,6 @@ public class Main {
 
                     System.out.println("Game players:");
                     game.getPlayers();
-                    System.out.println("");
 
                     //For each player in the game, guess the given word
                     for (int i = 0; i < numberPlayers; i++) {
@@ -155,7 +154,6 @@ public class Main {
 
                     }
                     System.out.println("Press 2 to return to game menu");
-                    // TODO: end of game, save scores to a scores class that can be called in previous scores method below
 
                     break;
                 case 1:
